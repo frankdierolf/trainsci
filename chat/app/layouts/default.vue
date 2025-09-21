@@ -96,7 +96,7 @@ defineShortcuts({
       <template #header="{ collapsed }">
         <NuxtLink to="/" class="flex items-end gap-0.5">
           <Logo class="h-8 w-auto shrink-0" />
-          <span v-if="!collapsed" class="text-xl font-bold text-highlighted">Chat</span>
+          <span v-if="!collapsed" class="text-xl font-bold text-highlighted">Sciarmy</span>
         </NuxtLink>
 
         <div v-if="!collapsed" class="flex items-center gap-1.5 ms-auto">
@@ -146,15 +146,30 @@ defineShortcuts({
 
       <template #footer="{ collapsed }">
         <UserMenu v-if="loggedIn" :collapsed="collapsed" />
-        <UButton
-          v-else
-          :label="collapsed ? '' : 'Login with GitHub'"
-          icon="i-simple-icons-github"
-          color="neutral"
-          variant="ghost"
-          class="w-full"
-          @click="openInPopup('/auth/github')"
-        />
+        <div v-else class="flex flex-col gap-2">
+          <UButton
+            :label="collapsed ? '' : 'Settings'"
+            color="neutral"
+            variant="soft"
+            class="w-full relative z-10"
+            @click="navigateTo('/about')"
+          >
+            <template #leading>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" class="w-4 h-4">
+                <path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/>
+              </svg>
+            </template>
+          </UButton>
+          <UButton
+            :label="collapsed ? '' : 'Login with GitHub'"
+            icon="i-simple-icons-github"
+            color="neutral"
+            variant="ghost"
+            class="w-full relative z-10"
+            @click="openInPopup('/auth/github')"
+          />
+
+        </div>
       </template>
     </UDashboardSidebar>
 
