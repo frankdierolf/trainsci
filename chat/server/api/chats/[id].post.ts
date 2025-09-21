@@ -2,6 +2,7 @@ import { convertToModelMessages, createUIMessageStream, createUIMessageStreamRes
 import { gateway } from '@ai-sdk/gateway'
 import type { UIMessage } from 'ai'
 import { z } from 'zod'
+import { detectAgentCommand, tools, getTextFromParts } from '../../utils/tools'
 
 defineRouteMeta({
   openAPI: {
@@ -57,12 +58,27 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Check if the latest message contains an agent command
+  const lastMessageText = lastMessage?.parts ? getTextFromParts(lastMessage.parts) : ''
+  const agentDetection = detectAgentCommand(lastMessageText)
+
   const stream = createUIMessageStream({
     execute: ({ writer }) => {
+      // Configure tools and tool choice based on agent detection
+      const toolConfig: any = {}
+
+      if (agentDetection.hasAgent && agentDetection.agentName === 'waiting') {
+        toolConfig.tools = { waitingAgent: tools.waitingAgent }
+        toolConfig.toolChoice = { type: 'tool', toolName: 'waitingAgent' }
+      }
+
       const result = streamText({
         model: gateway(model),
-        system: 'You are a helpful assistant that can answer questions and help.',
-        messages: convertToModelMessages(messages)
+        system: agentDetection.hasAgent
+          ? `You are a helpful assistant with access to tools. The user wants to invoke the ${agentDetection.agentName} agent. Call the appropriate tool with the user's message.`
+          : 'You are a helpful assistant that can answer questions and help.',
+        messages: convertToModelMessages(messages),
+        ...toolConfig
       })
 
       writer.merge(result.toUIMessageStream())
