@@ -22,24 +22,24 @@ function onSubmit() {
 
 const quickChats = [
   {
-    label: 'Why use Nuxt UI?',
-    icon: 'i-logos-nuxt-icon'
+    label: '@ip-blockchain-agent protect my quantum computing research',
+    icon: 'i-lucide-shield-check'
   },
   {
-    label: 'Help me create a Vue composable',
-    icon: 'i-logos-vue'
+    label: '@literature-agent search for papers on CRISPR gene therapy',
+    icon: 'i-lucide-book-open'
   },
   {
-    label: 'Tell me more about UnJS',
-    icon: 'i-logos-unjs'
+    label: '@peer-review-agent review my machine learning methodology',
+    icon: 'i-lucide-file-check'
   },
   {
-    label: 'Why should I consider VueUse?',
-    icon: 'i-logos-vueuse'
+    label: '@grant-agent find funding for renewable energy research',
+    icon: 'i-lucide-coins'
   },
   {
-    label: 'Tailwind CSS best practices',
-    icon: 'i-logos-tailwindcss-icon'
+    label: '@cross-domain-agent discover connections for neural networks',
+    icon: 'i-lucide-network'
   }
 ]
 </script>

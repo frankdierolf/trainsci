@@ -65,11 +65,16 @@ export default defineEventHandler(async (event) => {
   const stream = createUIMessageStream({
     execute: ({ writer }) => {
       // Configure tools and tool choice based on agent detection
-      const toolConfig: any = {}
+      let toolConfig = {}
 
-      if (agentDetection.hasAgent && agentDetection.agentName === 'waiting') {
-        toolConfig.tools = { waitingAgent: tools.waitingAgent }
-        toolConfig.toolChoice = { type: 'tool', toolName: 'waitingAgent' }
+      if (agentDetection.hasAgent && agentDetection.agentName) {
+        const agentName = agentDetection.agentName
+        if (tools[agentName as keyof typeof tools]) {
+          toolConfig = {
+            tools: { [agentName]: tools[agentName as keyof typeof tools] },
+            toolChoice: { type: 'tool', toolName: agentName }
+          }
+        }
       }
 
       const result = streamText({
