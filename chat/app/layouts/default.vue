@@ -77,8 +77,14 @@ async function deleteChat(id: string) {
 }
 
 function openDeck() {
-  if (process.client) {
+  if (import.meta.client) {
     window.open('https://deck.sciarmy.com', '_blank')
+  }
+}
+
+function openDevfolio() {
+  if (import.meta.client) {
+    window.open('https://devfolio.co/projects/sciarmy-75d0', '_blank')
   }
 }
 
@@ -152,24 +158,31 @@ defineShortcuts({
 
       <template #footer="{ collapsed }">
         <UserMenu v-if="loggedIn" :collapsed="collapsed" />
-        <div v-else class="flex flex-col gap-2">
+        <div v-else class="flex flex-col gap-2 w-full">
           <UButton
             :label="collapsed ? '' : 'View Deck'"
             icon="i-lucide-presentation"
             color="neutral"
             variant="soft"
-            class="w-full relative z-10"
+            class="w-full"
             @click="openDeck"
+          />
+          <UButton
+            :label="collapsed ? '' : 'View Devfolio'"
+            icon="i-lucide-trophy"
+            color="neutral"
+            variant="soft"
+            class="w-full"
+            @click="openDevfolio"
           />
           <UButton
             :label="collapsed ? '' : 'Login with GitHub'"
             icon="i-simple-icons-github"
             color="neutral"
-            variant="ghost"
-            class="w-full relative z-10"
+            variant="soft"
+            class="w-full"
             @click="openInPopup('/auth/github')"
           />
-
         </div>
       </template>
     </UDashboardSidebar>
