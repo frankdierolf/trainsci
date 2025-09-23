@@ -1,130 +1,205 @@
-# Nuxt AI Chatbot Template
+# SciArmy Chat Platform
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+AI agents that help scientists with research tasks.
 
-Full-featured AI Chatbot Nuxt application with authentication, chat history, multiple pages, collapsible sidebar, keyboard shortcuts, light & dark mode, command palette and more. Built using [Nuxt UI](https://ui.nuxt.com) components and integrated with [AI SDK v5](https://sdk.vercel.ai) for a complete chat experience.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-sciarmy.com-blue?style=for-the-badge)](https://sciarmy.com)
 
-- [Live demo](https://chat-template.nuxt.dev/)
-- [Documentation](https://ui4.nuxt.com/docs/getting-started/installation/nuxt)
+## Hackathon Project
 
-<a href="https://chat-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui4.nuxt.com/assets/templates/nuxt/chat-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui4.nuxt.com/assets/templates/nuxt/chat-light.png">
-    <img alt="Nuxt AI Chatbot Template" src="https://ui4.nuxt.com/assets/templates/nuxt/chat-light.png">
-  </picture>
-</a>
+Built during [Blocktrain](https://blocktrain.devfolio.co/) - 36 hours on a moving train from Bengaluru to Delhi. Special thanks to the [Nuxt UI chat template](https://github.com/nuxt-ui-templates/chat) which made this possible in such limited time.
 
-## Features
+**Note:** This is a proof-of-concept demonstration. Agents return simulated responses to showcase the interface and user experience.
 
-- ⚡️ **Streaming AI messages** powered by the [AI SDK v5](https://sdk.vercel.ai)
-- 🤖 **Multiple model support** via various AI providers with built-in AI Gateway support
-- 🔐 **Authentication** via [nuxt-auth-utils](https://github.com/atinux/nuxt-auth-utils)
-- 💾 **Chat history persistence** using PostgreSQL database and [Drizzle ORM](https://orm.drizzle.team)
-- 🚀 **Easy deploy** to Vercel with zero configuration
+## What it does
 
-## Quick Start
+SciArmy provides five AI agents that assist with common research workflows:
 
-```bash
-npm create nuxt@latest -- -t github:nuxt-ui-templates/chat
+### Research Agents
+
+**IP Blockchain Agent** - Protect research with blockchain timestamping
+```
+@ip-blockchain-agent protect my quantum computing research
 ```
 
-## Deploy your own
+**Literature Agent** - Search and analyze academic papers
+```
+@literature-agent search for papers on CRISPR gene therapy
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=chat&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fchat&env=NUXT_SESSION_PASSWORD,NUXT_OAUTH_GITHUB_CLIENT_ID,NUXT_OAUTH_GITHUB_CLIENT_SECRET&products=%5B%7B%22type%22%3A%22integration%22%2C%22group%22%3A%22postgres%22%7D%5D&demo-image=https%3A%2F%2Fui4.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fchat-dark.png&demo-url=https%3A%2F%2Fchat-template.nuxt.dev%2F&demo-title=Nuxt%20Chat%20Template&demo-description=An%20AI%20chatbot%20template%20to%20build%20your%20own%20chatbot%20powered%20by%20Nuxt%20MDC%20and%20Vercel%20AI%20SDK.)
+**Peer Review Agent** - Validate research methodology
+```
+@peer-review-agent review my machine learning methodology
+```
 
-## Setup
+**Grant Agent** - Find funding opportunities
+```
+@grant-agent find funding for renewable energy research
+```
 
-Make sure to install the dependencies:
+**Cross-Domain Agent** - Discover interdisciplinary connections
+```
+@cross-domain-agent discover connections for neural networks
+```
 
+*Agents currently operate in demo mode with simulated responses.*
+
+## Quick start
+
+### Prerequisites
+- Node.js 18+ and pnpm
+- PostgreSQL database
+- GitHub OAuth application
+
+### Installation
+
+1. **Install dependencies:**
 ```bash
+git clone <repository-url>
+cd chat
 pnpm install
 ```
 
-Set up your environment variables by creating a `.env` file:
-
-```env
-# Database
-DATABASE_URL=<your-postgresql-database-url>
-
-# GitHub OAuth (optional, for authentication)
-NUXT_OAUTH_GITHUB_CLIENT_ID=<your-github-oauth-app-client-id>
-NUXT_OAUTH_GITHUB_CLIENT_SECRET=<your-github-oauth-app-client-secret>
-
-# AI Configuration via Vercel AI Gateway (unified API for all providers)
-AI_GATEWAY_API_KEY=<your-vercel-ai-gateway-api-key>
-
-# Password for nuxt-auth-utils (minimum 32 characters)
-NUXT_SESSION_PASSWORD=<your-password>
+2. **Environment setup:**
+```bash
+cp .env.example .env
 ```
 
-> [!TIP]
-> With [Vercel AI Gateway](https://vercel.com/docs/ai-gateway), you don't need individual API keys for OpenAI, Anthropic, etc. The AI Gateway provides a unified API to access hundreds of models through a single endpoint with automatic load balancing, fallbacks, and spend monitoring.
+Configure your environment variables:
+```env
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/sciarmy
 
-To add authentication with GitHub, you need to [create a GitHub OAuth application](https://github.com/settings/applications/new).
+# GitHub OAuth
+NUXT_OAUTH_GITHUB_CLIENT_ID=your_github_client_id
+NUXT_OAUTH_GITHUB_CLIENT_SECRET=your_github_client_secret
 
-Run database migrations:
+# AI Gateway
+AI_GATEWAY_API_KEY=your_vercel_ai_gateway_key
 
+# Session security (minimum 32 characters)
+NUXT_SESSION_PASSWORD=your_secure_password_here
+```
+
+3. **Database setup:**
 ```bash
 pnpm db:migrate
 ```
 
-## Development
-
-Start the development server on `http://localhost:3000`:
-
+4. **Start development:**
 ```bash
 pnpm dev
 ```
 
-## Production
+Visit `http://localhost:3000` to start chatting with research agents.
 
-Build the application for production:
+## Architecture
 
-```bash
-pnpm build
+### Technology Stack
+- **Frontend:** Nuxt 4 with Vue 3
+- **UI:** Nuxt UI with TailwindCSS
+- **Backend:** Nitro server
+- **Database:** PostgreSQL with Drizzle ORM
+- **AI:** AI SDK v5 with Vercel AI Gateway
+- **Auth:** GitHub OAuth
+
+### Project Structure
+```
+chat/
+├── app/                    # Nuxt application
+│   ├── pages/             # Routes
+│   ├── components/        # Vue components
+│   └── composables/       # Shared state
+├── server/                # Nitro server
+│   ├── api/chats/        # Chat API
+│   ├── database/         # DB schema
+│   ├── routes/           # Auth routes
+│   └── utils/tools.ts    # Agent definitions
+├── shared/               # TypeScript types
+└── nuxt.config.ts       # Configuration
 ```
 
-Locally preview production build:
+## Development
 
+### Available Commands
 ```bash
-pnpm preview
+pnpm dev           # Start development server
+pnpm build         # Build for production
+pnpm lint          # Run ESLint
+pnpm typecheck     # TypeScript checking
+pnpm db:generate   # Generate migrations
+pnpm db:migrate    # Apply migrations
 ```
 
-Deploy to Vercel:
+### Adding New Agents
 
-```bash
-npx vercel
+1. **Define the agent in `server/utils/tools.ts`:**
+```typescript
+export const tools = {
+  yourAgent: {
+    description: 'Description of what your agent does',
+    inputSchema: z.object({
+      query: z.string().describe('Input parameter')
+    }),
+    execute: async ({ query }) => {
+      return { status: 'completed', result: 'output' }
+    }
+  }
+}
 ```
 
-Or connect your repository to Vercel for automatic deployments:
+2. **Add agent mapping:**
+```typescript
+const agentMap: Record<string, string> = {
+  'your-agent': 'yourAgent'
+}
+```
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Configure your environment variables in the Vercel dashboard
-4. Deploy automatically on every push
+## Deployment
 
-> [!NOTE]
-> Make sure to configure your PostgreSQL database connection and run migrations in your production environment.
+### Vercel (Recommended)
+1. Connect GitHub repository to [Vercel](https://vercel.com)
+2. Configure environment variables
+3. Deploy automatically on push
 
-The application is configured to use [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) which provides:
+### Environment Variables
+```env
+DATABASE_URL=<postgresql-connection-string>
+AI_GATEWAY_API_KEY=<vercel-ai-gateway-key>
+NUXT_SESSION_PASSWORD=<32-char-password>
+NUXT_OAUTH_GITHUB_CLIENT_ID=<github-oauth-client-id>
+NUXT_OAUTH_GITHUB_CLIENT_SECRET=<github-oauth-client-secret>
+```
 
-- **Unified API**: Access hundreds of AI models through a single endpoint
-- **High Reliability**: Automatic retries and fallbacks between providers
-- **Spend Monitoring**: Track usage and set budgets across all providers
-- **Load Balancing**: Distribute requests for optimal performance
+## Research Impact
 
-Simply configure your `AI_GATEWAY_API_KEY` in your Vercel environment variables for production use.
+Traditional research timeline vs. with SciArmy:
 
-## AI Gateway Setup
+| Task | Traditional | With SciArmy |
+|------|-------------|--------------|
+| Literature Review | 2-3 months | Hours |
+| IP Protection | 2-4 weeks | Minutes |
+| Grant Discovery | 1-2 weeks | Minutes |
+| Methodology Review | 3-6 months | Minutes |
 
-1. Create a Vercel account at [vercel.com](https://vercel.com)
-2. Navigate to your [AI Gateway settings](https://vercel.com/dashboard/ai-gateway)
-3. Generate an API key for your project
-4. Add the key to your environment variables as `AI_GATEWAY_API_KEY`
+## Implementation Status
 
-The AI Gateway automatically handles authentication with all supported AI providers including OpenAI, Anthropic, Google, xAI, and many others.
+✅ **Built during Blocktrain:**
+- Agent framework with dynamic UI components
+- Chat interface with markdown and code highlighting
+- GitHub authentication and chat persistence
+- 5 demonstration agents with simulated responses
+- Live deployments on sciarmy.com and deck.sciarmy.com
 
-## Renovate integration
+## Use Cases
 
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+**Individual Researchers**
+- Graduate students: Literature review and methodology validation
+- Post-docs: Grant discovery and cross-domain exploration
+- Principal investigators: IP protection and research prioritization
+
+**Research Teams**
+- Collaborative discovery across disciplines
+- Grant tracking and deadline optimization
+- Quality assurance and methodology checking
+
+Ready to accelerate your research? [Try SciArmy live](https://sciarmy.com)

@@ -1,11 +1,37 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# SciArmy Presentation Deck
 
-To start the slide show:
+Pitch presentation for the AI research platform.
 
-- `pnpm install`
-- `pnpm dev`
-- visit <http://localhost:3030>
+## About the presentation
 
-Edit the [slides.md](./slides.md) to see the changes.
+Created during the [Blocktrain hackathon](https://blocktrain.devfolio.co/) to present the SciArmy concept.
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+This deck showcases SciArmy's vision for accelerating scientific research with AI agents. It covers:
+
+- Problem: Current research bottlenecks
+- Solution: AI agents for common research tasks
+- Market opportunity and business model
+- Technology demonstration
+- Team and traction
+
+## Quick start
+
+To view the slides:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Visit `http://localhost:3030` to view the presentation.
+
+## Editing
+
+Edit [slides.md](./slides.md) to modify the main presentation, or individual pages in the `/pages` directory.
+
+Built with [Slidev](https://sli.dev/) for interactive, markdown-based presentations.
+
+## Related
+
+- **[Chat Platform](../chat/)** - The main SciArmy application
+- **[Live Demo](https://deck.sciarmy.com)** - Try the platform

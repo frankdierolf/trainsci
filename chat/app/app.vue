@@ -10,23 +10,26 @@ useHead({
     { key: 'theme-color', name: 'theme-color', content: color }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
   ],
   htmlAttrs: {
     lang: 'en'
   }
 })
 
-const title = 'Nuxt AI Chatbot template'
-const description = 'A full-featured, hackable Nuxt AI chatbot template made with Nuxt UI.'
+const title = 'SciArmy - AI CoScientist Platform'
+const description = 'Accelerating research 1000x with AI agents. Instant IP protection, literature discovery, and research automation.'
 
 useSeoMeta({
   title,
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui4.nuxt.com/assets/templates/nuxt/chat-light.png',
-  twitterImage: 'https://ui4.nuxt.com/assets/templates/nuxt/chat-light.png',
+  ogImage: '/og-image.png',
+  twitterImage: '/og-image.png',
   twitterCard: 'summary_large_image'
 })
 </script>

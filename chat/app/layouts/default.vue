@@ -76,6 +76,12 @@ async function deleteChat(id: string) {
   }
 }
 
+function openDeck() {
+  if (process.client) {
+    window.open('https://deck.sciarmy.com', '_blank')
+  }
+}
+
 defineShortcuts({
   c: () => {
     navigateTo('/')
@@ -148,18 +154,13 @@ defineShortcuts({
         <UserMenu v-if="loggedIn" :collapsed="collapsed" />
         <div v-else class="flex flex-col gap-2">
           <UButton
-            :label="collapsed ? '' : 'Settings'"
+            :label="collapsed ? '' : 'View Deck'"
+            icon="i-lucide-presentation"
             color="neutral"
             variant="soft"
             class="w-full relative z-10"
-            @click="navigateTo('/about')"
-          >
-            <template #leading>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" class="w-4 h-4">
-                <path fill="currentColor" d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/>
-              </svg>
-            </template>
-          </UButton>
+            @click="openDeck"
+          />
           <UButton
             :label="collapsed ? '' : 'Login with GitHub'"
             icon="i-simple-icons-github"
